@@ -6,6 +6,7 @@
 
 // Import packages
 import javax.swing.JOptionPane;
+import javax.swing.JLabel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -307,12 +308,19 @@ public class Blackjack {
 	public static void displayScores(ArrayList<Player> players) {
 		// display final scores
 		int[] finalScores = new int[players.size()];
-		String bust = "";
-		String fold = "";
+		String scores = "<html>--- Final Scores ---<br /><table>";
 		for (int i = 0; i < players.size(); i++) {
 			finalScores[i] = players.get(i).getScore();
-			System.out.println(players.get(i).name + ": $" + players.get(i).cash);
+			scores += "<tr><td>" + players.get(i).name + ":</td><td>$" + players.get(i).cash + "</td></tr>";
 		}
+		scores += "</table></html>";
+		JLabel display = new JLabel(scores);
+		JOptionPane.showMessageDialog(
+			null,
+			display,
+			"Blackjack",
+			JOptionPane.INFORMATION_MESSAGE
+		);
 	}
 
 	public static void main(String[] args) {
@@ -333,12 +341,14 @@ public class Blackjack {
 			Blackjack.playRound(players,deck);
 
 			// show scores
-			String scoreList = "-- Final Scores --\nDealer: " + dealer.getScore() + "\n";
+			String roundScores = "<html>--- Round Scores ---<table><tr><td>Dealer:</td><td>" + dealer.getScore() + "</td></tr>";
 			int bankruptPlayers = 0;
-			for (Player curPlayer : players) scoreList += curPlayer.name + ": " + curPlayer.getScore() + "\n";
+			for (Player curPlayer : players) roundScores += "<tr><td>" + curPlayer.name + ":</td><td>" + curPlayer.getScore() + "</td></tr>";
+			roundScores += "</table></html>";
+			JLabel roundDisplay = new JLabel(roundScores);
 			JOptionPane.showMessageDialog(
 				null,
-				scoreList,
+				roundDisplay,
 				"Blackjack",
 				JOptionPane.INFORMATION_MESSAGE
 			);
