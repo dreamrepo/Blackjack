@@ -4,18 +4,22 @@
 // Purpose:
 //
 
+// Import packages
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
 public class Blackjack {
-  public static class Card {
+	// Define Card class
+	public static class Card {
+		// Define variables
 		public final int suit;
 		public final int number;
 		public final String type;
 		public final int points;
 
+		// Define Card constructor
 		public Card(int s, int n) {
 			this.suit = s;
 			this.number = n;
@@ -46,7 +50,9 @@ public class Blackjack {
 		}
 	}
 
+	// Define player class
 	public static class Player {
+		// Define variables
 		public String name;
 		public int cash = 200;
 		public int bet = 0;
@@ -54,6 +60,7 @@ public class Blackjack {
 		public boolean bust = false;
 		public boolean bankrupt = false;
 		public ArrayList<Card> hand = new ArrayList<Card>();
+		// Define method to return score
 		public int getScore() {
 			int score = 0;
 			int aces = 0;
@@ -70,6 +77,7 @@ public class Blackjack {
 			}
 			return score;
 		}
+		// Define method to return a list of cards in one's hand
 		public String getHand() {
 			String handList = "";
 			for (Card card : this.hand) {
@@ -80,6 +88,7 @@ public class Blackjack {
 		}
 	}
 
+	// Define Blakcjack method to deal a card to a player
 	public static void deal(Player player, ArrayList<Card> deck) {
 		Random generator = new Random();
 		boolean success = false;
