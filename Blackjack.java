@@ -1,8 +1,12 @@
-// Program: Blackjack.java
+/// Program: Blackjack.java
 // Programmer: Lucas Schneider
 // Date: December 28, 2012
 // Purpose:
-//
+// This is a simple multiplayer Blackjack game. Each player
+// competes against the dealer and is able to playe a bet
+// for each round. If a player loses all of his or her money,
+// he or she will not be able to continue playing with the
+// other players.
 
 // Import packages
 import javax.swing.JOptionPane;
@@ -65,10 +69,13 @@ public class Blackjack {
 		public int getScore() {
 			int score = 0;
 			int aces = 0;
+			// This loop counts the number of aces in one's hand
 			for (Card card : this.hand) {
 				score += card.points;
 				if (card.type.equals("ace")) aces++;
 			}
+			// This loop subtracts 10 points from the player's score
+			// for each ace in their hand while their score is above 21
 			while (aces > 0) {
 				if (score <= 21) break;
 				else {
@@ -89,7 +96,11 @@ public class Blackjack {
 		}
 	}
 
-	// Define Blakcjack method to deal a card to a player
+	// Define Blackjack method to deal a card to a player.
+	// A random suit and number are each generated. If that
+	// combination of suit and number is still in the deck,
+	// the card is dealt to tha player and removed from the
+	// deck. Otherwise a new combination is generated.
 	public static void deal(Player player, ArrayList<Card> deck) {
 		Random generator = new Random();
 		boolean success = false;
